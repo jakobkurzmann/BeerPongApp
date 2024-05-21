@@ -45,7 +45,7 @@ public class UserController
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    void updateUser(@RequestBody User user, @PathVariable Integer id)
+    void updateUser(@Valid @RequestBody User user, @PathVariable Integer id)
     {
         userRepository.updateUser(user,id);
     }

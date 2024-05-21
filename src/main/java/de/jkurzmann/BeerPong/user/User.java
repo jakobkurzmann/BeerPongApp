@@ -4,17 +4,15 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
 public record User(
-
-                   @NotEmpty
-                   Integer id,
-                   @NotEmpty
-                   String username,
-                   @NotEmpty
-                   @Email
-                   String email,
-                   @NotEmpty
-                   String firstname,
-                   @NotEmpty
-                   String lastname,
-                   String profilePicture) {
+        Integer id,
+        @NotEmpty
+        String username,
+        @NotEmpty
+        @Email
+        String email,
+        @NotEmpty
+        String firstname,
+        @NotEmpty
+        String lastname,
+        String profilePicture) {
 }
