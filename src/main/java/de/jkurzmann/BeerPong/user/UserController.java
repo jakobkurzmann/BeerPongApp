@@ -12,9 +12,9 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController
 {
-    private final UserRepository userRepository;
+    private final JdbcUserRepository userRepository;
 
-    public UserController(UserRepository userRepository)
+    public UserController(JdbcUserRepository userRepository)
     {
         this.userRepository = userRepository;
     }
@@ -40,20 +40,20 @@ public class UserController
     @PostMapping("")
     void createUser(@Valid @RequestBody User user)
     {
-        userRepository.createUser(user);
+        userRepository.create(user);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     void updateUser(@Valid @RequestBody User user, @PathVariable Integer id)
     {
-        userRepository.updateUser(user,id);
+        userRepository.update(user, id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void deleteUser(@PathVariable Integer id)
     {
-        userRepository.deleteUser(id);
+        userRepository.delete(id);
     }
 }
