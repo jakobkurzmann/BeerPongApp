@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 
 public record User(
 
-        Integer id,
+        Integer user_id,
         @NotEmpty
         String username,
         @NotEmpty
@@ -15,5 +15,7 @@ public record User(
         String firstname,
         @NotEmpty
         String lastname,
+        @NotEmpty
+        String password,
         String profilePicture) {
 }

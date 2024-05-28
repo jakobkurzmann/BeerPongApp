@@ -22,9 +22,7 @@ public class BeerPongApplication {
     {
         return args ->
         {
-            User user = new User(1, "JJK", "business.kurzmann@gmail.com", "Jakob",
-                    "Kurzmann", "");
-            log.info("User: " +  user);
+
         };
     }
 

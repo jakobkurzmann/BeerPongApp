@@ -19,13 +19,13 @@ public class JdbcUserRepository implements UserRepository {
     }
     //This function retrieves all users from the database
     public List<User> findAll() {
-        return jdbcClient.sql("select * from \"User\"")
+        return jdbcClient.sql("select * from user_account")
                 .query(User.class)
                 .list();
     }
     //This function searches for a user in the database based on their ID.
     public Optional<User> findById(Integer id) {
-        return jdbcClient.sql("select * from \"User\" WHERE id = :id")
+        return jdbcClient.sql("select * from user_account WHERE user_id = :id")
                 .param("id", id)
                 .query(User.class)
                 .optional();
@@ -33,26 +33,26 @@ public class JdbcUserRepository implements UserRepository {
     //This function creates a new user and adds them to the database.
     public void create(User user)
     {
-        var updated = jdbcClient.sql("INSERT INTO \"User\"(id, username, firstname, " +
-                "lastname, email, profilePicture) values(?,?,?,?,?,?)").params(List.of(user.id(), user.username(),
-                user.firstname(), user.lastname(), user.email(), user.profilePicture())).update();
+        var updated = jdbcClient.sql("INSERT INTO user_account(username, firstname, " +
+                "lastname, email, password, profilepicture) values(?,?,?,?,?,?)").params(List.of( user.username(),
+                user.firstname(), user.lastname(), user.email(), user.password(), user.profilePicture())).update();
 
         Assert.state(updated == 1, "Failed to create user" + user.username());
     }
     //This function updates an existing user in the database based on their ID.
     public void update(User user, Integer id)
     {
-        var updated = jdbcClient.sql("UPDATE \"User\" set id = ?, username = ?, firstname = ?," +
-                                            "lastname = ?, email = ?, profilePicture = ? WHERE id = ?")
-                .params(List.of(user.id(), user.username(),
-                        user.firstname(), user.lastname(), user.email(), user.profilePicture(),id)).update();
+        var updated = jdbcClient.sql("UPDATE user_account set username = ?, firstname = ?," +
+                                            "lastname = ?, email = ?, password = ?,profilePicture = ? WHERE user_id = ?")
+                .params(List.of(user.username(),
+                        user.firstname(), user.lastname(), user.email(), user.password(), user.profilePicture(),id)).update();
 
-        Assert.state(updated == 1, "Failed to update user " + user.id());
+        Assert.state(updated == 1, "Failed to update user " + user.user_id());
     }
     //This function deletes a user from the database based on their ID.
     public void delete(Integer id)
     {
-        var updated = jdbcClient.sql("DELETE FROM \"User\" WHERE id = :id").param("id",id).update();
+        var updated = jdbcClient.sql("DELETE FROM user_account WHERE user_id = :id").param("id",id).update();
 
         Assert.state(updated == 1, "Failed to delete User " + id) ;
     }
