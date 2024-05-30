@@ -1,5 +1,6 @@
 package de.jkurzmann.BeerPong;
 
+import de.jkurzmann.BeerPong.team.Team;
 import de.jkurzmann.BeerPong.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

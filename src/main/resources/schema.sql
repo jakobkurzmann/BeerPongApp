@@ -12,10 +12,10 @@ CREATE TABLE IF NOT EXISTS team
 (
     team_id SERIAL PRIMARY KEY,
     team_name varchar(50),
-    user_id1 INT NOT NULL ,
-    user_id2 INT NOT NULL,
-    FOREIGN KEY (user_id1) REFERENCES user_account(user_id),
-    FOREIGN KEY (user_id2) REFERENCES user_account(user_id)
+    user1_id INT NOT NULL ,
+    user2_id INT NOT NULL,
+    FOREIGN KEY (user1_id) REFERENCES user_account(user_id),
+    FOREIGN KEY (user2_id) REFERENCES user_account(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS match
